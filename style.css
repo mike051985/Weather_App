@@ -6,6 +6,7 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
+    box-sizing: border-box;
 }
 
 #weather-container {
@@ -97,6 +98,23 @@ button:hover {
     margin-top: 10px;
 }
 
+.hide-geo-weather {
+    display: none;
+}
+
+.geo-icon {
+    width: 200px;
+}
+
+.geo-temp {
+    font-size: 60px;
+    margin-top: -30px;
+}
+
+.weather-city {
+    font-size: 20px;
+}
+
 /* Media Queries*/
 @media screen and (max-width: 450px) {
     #weather-container {
@@ -110,5 +128,13 @@ button:hover {
     #weather-icon {
         width: 150px;
         height: 150px;
+    }
+
+    .geo-icon {
+        width: 150px;
+    }
+
+    .geo-temp {
+        font-size: 50px;
     }
 }

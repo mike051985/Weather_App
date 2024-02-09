@@ -11,9 +11,10 @@
 <body>
     <div id="weather-container">
         <h1>Weather App</h1>
-        <input type="text" id="city" placeholder="Enter city" autocomplete="off">
-        <button onclick="getWeather()">Search</button>
+        <input type="text" id="city-name" class="city-name" placeholder="Enter city" autocomplete="off">
+        <button class="search-btn" onclick="getWeather()">Search</button>
 
+        <!--Selected City Weather-->
         <img src="" alt="Weather Icon" id="weather-icon">
 
         <div id="temp-div"></div>
@@ -21,6 +22,9 @@
         <div id="weather-info"></div>
 
         <div id="hourly-forecast"></div>
+
+        <!--Geolocated Weather-->
+        <div id="geo-weather"></div>
     </div>
 </body>
 </html>

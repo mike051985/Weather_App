@@ -1,15 +1,46 @@
-// Get weather data
+// Geolocated Weather
+navigator.geolocation.getCurrentPosition(position => {
+    fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric`)
+        .then(res => {
+            if (!res.ok) {
+                throw Error("Weather data not available")
+            }
+            return res.json()
+        })
+        .then(data => {
+            const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+            document.getElementById("geo-weather").innerHTML = `
+                <img class="geo-icon" src=${iconUrl} />
+                <p class="geo-temp">${Math.round(data.main.temp)}°C</p>
+                <p class="weather-city">${data.name}</p>
+            `
+        })
+        .catch(err => console.error(err))
+});
+
+// Hide Geolocated Weather
+let geoWeather = document.querySelector("#geo-weather")
+
+document.querySelector(".search-btn").addEventListener("click", (e) => {
+    e.preventDefault()
+    geoWeather.classList.add("hide-geo-weather")
+})
+
+
+//Selected City Weather
+
+// Get weather data from Open Weather API
 function getWeather() {
     const apiKey = "f73ddcfc164f42dc60c736700cc1df5c";
-    const city = document.getElementById("city").value;
+    let cityName = document.getElementById("city-name").value;
 
-    if (!city) {
+    if (!cityName) {
         alert("Please enter a city");
         return;
     }
 
-    const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
-    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
+    const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
+    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`;
 
     fetch(currentWeatherUrl)
             .then(response => response.json())
@@ -30,8 +61,8 @@ function getWeather() {
                 console.error("Error fetching hourly forecast data:", error);
                 alert("Error fetching hourly forecast data. Please try again.");
             })
-}
 
+}
 
 // Display weather data
 function displayWeather(data) {
@@ -72,7 +103,6 @@ function displayWeather(data) {
     }
 }
 
-
 // Display hourly forecast weather data
 function displayHourlyForecast(hourlyData) {
     const hourlyForecastDiv = document.getElementById('hourly-forecast');
@@ -97,7 +127,6 @@ function displayHourlyForecast(hourlyData) {
         hourlyForecastDiv.innerHTML += hourlyItemHtml;
     });
 }
-
 
 // Show image icon
 function showImage() {
