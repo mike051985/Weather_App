@@ -18,6 +18,7 @@ body {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
+    margin-top: 30px;
 }
 
 h1, label, p {
