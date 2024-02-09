@@ -19,7 +19,7 @@ navigator.geolocation.getCurrentPosition(position => {
 });
 
 // Hide Geolocated Weather
-let geoWeather = document.querySelector("#geo-weather")
+const geoWeather = document.querySelector("#geo-weather")
 
 document.querySelector(".search-btn").addEventListener("click", (e) => {
     e.preventDefault()
@@ -32,7 +32,7 @@ document.querySelector(".search-btn").addEventListener("click", (e) => {
 // Get weather data from Open Weather API
 function getWeather() {
     const apiKey = "f73ddcfc164f42dc60c736700cc1df5c";
-    let cityName = document.getElementById("city-name").value;
+    const cityName = document.getElementById("city-name").value;
 
     if (!cityName) {
         alert("Please enter a city");
